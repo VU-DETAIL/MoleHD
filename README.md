@@ -12,8 +12,8 @@ If there are any technical questions after the README, please contact:
 * connectthapa84@gmail.com
 
 * Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
-  	* Rahul Thapa (Lead Researcher, B.S in CS)
-	* Dongning Ma (Ph.D. Students, EECS)
+  	* Dongning Ma (Ph.D. Students, EECS)
+	* Rahul Thapa (B.S, CS)
   	* Xun Jiao (Faculty Advisor, EECS)
 
 
