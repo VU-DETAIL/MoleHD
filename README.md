@@ -25,7 +25,6 @@ note: You can replace `env_conda` with any env name you want.
 `$ conda activate env_conda`
 
 4. Run this command from inside the conda environment (Please check the parameter inside MoleHD.py file and change as you want to experiment):
-
 `python MoleHD`  
 
 4. to deactivate your environment:  
