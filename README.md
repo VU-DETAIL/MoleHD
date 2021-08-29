@@ -1,7 +1,7 @@
-### MoleHD
+# MoleHD
 MoleHD: Automated Drug Discovery using Brain-Inspired Hyperdimensional Computing
 
-## Datasets
+### Datasets
 
 Note: The dataset used in this experiment are already inside data folder. Below, we linked their sources. 
 
@@ -9,7 +9,7 @@ Note: The dataset used in this experiment are already inside data folder. Below,
  - BBBP and Sider dataset: http://moleculenet.ai/datasets-1 
  - Smile-PE: https://github.com/XinhaoLi74/SmilesPE
 
-## Conda Environment Setup
+### Conda Environment Setup
 
 The conda setup is the official setup for this repo:
 
