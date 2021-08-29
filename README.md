@@ -13,7 +13,7 @@ If there are any technical questions after the README, please contact:
 
 * Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
   	* Rahul Thapa (Lead Researcher, B.S in CS)
-	  * Dongning Ma (Ph.D. Students, EECS)
+	* Dongning Ma (Ph.D. Students, EECS)
   	* Xun Jiao (Faculty Advisor, EECS)
 
 
