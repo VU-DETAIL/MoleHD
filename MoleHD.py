@@ -18,7 +18,7 @@ import random
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='MoleHD Framework')
-    parser.add_argument('--dataset_file', default='./data/clintox.csv', type=str, help="File location. Example, '../data/clintox.csv' ")
+    parser.add_argument('--dataset_file', default='./data/clintox.csv', type=str, help="File location. Example, './data/clintox.csv' ")
     parser.add_argument('--target', default='CT_TOX', type=str, help="Name of target column in file.")
     parser.add_argument('--mols', default='smiles', type=str, help="Name of column that contains molecules.")
     parser.add_argument('--num_tokens', default=1500, type=int, help="Number of tokens to be used for data tokenization. Default 1500")
