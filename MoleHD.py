@@ -32,8 +32,6 @@ if __name__ == '__main__':
     parser.add_argument('--encoding_scheme', default="smiles_pretrained", type=str, help="Encoding scheme for HDC. Supported types [smiles_pretrained, atomwise, characterwise]")
     parser.add_argument('--split_type', default="random", type=str, help="Data split method. Supported types [scaffold, random, random_stratified]")   
     parser.add_argument('--version', default="v1", type=str, help="Version to be appended to file name while saving model and output.")  
-    
-    parser.add_argument('--epochs', default=150, type=int, help="Number of iterations to train the model for. Default 150")
 
     args = parser.parse_args()
 
