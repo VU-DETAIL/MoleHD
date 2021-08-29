@@ -13,7 +13,7 @@ Note: The dataset used in this experiment are already inside data folder. Below,
 
 The conda setup is the official setup for this repo:
 
-Make sure you have conda(anaconda or miniconda) installed ([linux instructions](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html)), preferably in `/home/username/anaconda3`
+Make sure you have conda(anaconda or miniconda) installed
 
 1. cd into repo directory, verify "env.yml" is in current directory
 2. Create conda env based on env.yml:  
@@ -24,7 +24,7 @@ note: You can replace `env_conda` with any env name you want.
 3. activate the new conda env:  
 `$ conda activate env_conda`
 
-4. Run this command from inside the conda environment (Please check the parameter inside MoleHD.py file and change as you want to experiment)
+4. Run this command from inside the conda environment (Please check the parameter inside MoleHD.py file and change as you want to experiment):
 `python MoleHD`  
 
 4. to deactivate your environment:  
