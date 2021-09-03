@@ -8,8 +8,8 @@ MoleHD: Automated Drug Discovery using Brain-Inspired Hyperdimensional Computing
 ```
 
 If there are any technical questions after the README, please contact:
-	* dma2@villanova.edu
-	* connectthapa84@gmail.com
+* dma2@villanova.edu
+* connectthapa84@gmail.com
 
 ## Core Team
 
