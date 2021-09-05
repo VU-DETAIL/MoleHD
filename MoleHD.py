@@ -17,6 +17,7 @@ import random
 
 if __name__ == '__main__':
 
+    # initializing all the arguments
     parser = argparse.ArgumentParser(description='MoleHD Framework')
     parser.add_argument('--dataset_file', default='./data/clintox.csv', type=str, help="File location. Example, './data/clintox.csv' ")
     parser.add_argument('--target', default='CT_TOX', type=str, help="Name of target column in file.")
@@ -55,6 +56,7 @@ if __name__ == '__main__':
     X = list(dataset[mols].values)
     Y = list(dataset[target].values)
 
+    # cleaning the dataset for any invalid molecules using deepchem
     X, Y, X_bad, Y_bad = clean_dataset(X, Y)
 
     print(len(X), len(Y))
@@ -77,7 +79,6 @@ if __name__ == '__main__':
     metrics_dict["confusion_matrices"] = list()
     metrics_dict["random_states"] = list()
 
-
     max_assoc_mem = []
     max_auroc = 0
 
@@ -86,6 +87,7 @@ if __name__ == '__main__':
         random_state = random.randint(0, 1000)
         print(f"----------- Iteration {iteration+1} ------------")
         
+        # encoding the molecules into numerical tokens
         if encoding_scheme.lower() == "smiles_pretrained":
             data_tokenized = data_tokenize_smiles_pretrained(X, num_tokens=num_tokens)
         elif encoding_scheme.lower() == "atomwise":
@@ -95,8 +97,10 @@ if __name__ == '__main__':
         else:
             print(f"MoleHD currently do not support {encoding_scheme} encoding scheme. Please try of of the 3 encoding schemes [scaffold, random, random_stratified]")
         
-        data_HV = create_associative_memory(data_tokenized, gramsize=gramsize, num_tokens=num_tokens, dim=dim, max_pos=max_pos, random_state=10)
+        # converting numerical tokens representing molecules into a hypervectors
+        data_HV = create_data_HV(data_tokenized, gramsize=gramsize, num_tokens=num_tokens, dim=dim, max_pos=max_pos, random_state=10)
         
+        # splitting the dataset into training and testing based on split type
         if split_type.lower() == "scaffold":
             X_tr, X_te, Y_tr, Y_te = train_test_split_scaffold(X, Y, data_HV, test_size=test_size/100, random_state=random_state)
         elif split_type.lower() == "random":
@@ -106,7 +110,7 @@ if __name__ == '__main__':
         else:
             print(f"MoleHD currently do not support {split_type} split type. Please try of of the 3 encoding schemes [scaffold, random, random_stratified]")
             
-        
+        # oversample to handle data imbalance
         oversample = imblearn.over_sampling.RandomOverSampler(sampling_strategy='minority') #Oversampling by duplication
 
         X_tr, Y_tr = oversample.fit_resample(X_tr, Y_tr)
@@ -117,10 +121,10 @@ if __name__ == '__main__':
         for i in range(len(Y_tr)):
             assoc_mem[Y_tr[i]] += X_tr[i]
             
+        # retraining the associative memory to fix misclassifications
         assoc_mem = retrain(assoc_mem, X_tr, Y_tr, epochs=epochs, dim=dim, threshold=threshold)
         
         Y_pred, Y_score = inference(assoc_mem, X_te, Y_te, dim=10000)
-        
         
         # Metrics
         auroc = sklearn.metrics.roc_auc_score(Y_te, Y_score)
@@ -176,7 +180,6 @@ if __name__ == '__main__':
     print("Precision: ", sum(metrics_dict["precision_list"])/iterations)
     print("Recall: ", sum(metrics_dict["recall_list"])/iterations)
 
-
     dataset_file_suffix = dataset_file.split("/")[-1].split(".")[0]
     file_suffix = f"{dataset_file_suffix}_data_{target}_tar_{dim}_dim_{gramsize}_gm_{encoding_scheme}_{split_type}_{version}.p"
 
@@ -185,7 +188,6 @@ if __name__ == '__main__':
 
     with open(f'./outputs/metrics_dict_{file_suffix}', 'wb') as f:
         pickle.dump(metrics_dict, f)
-
 
     with open(f'./models/model_{file_suffix}', 'wb') as f:
         pickle.dump(assoc_mem, f)
