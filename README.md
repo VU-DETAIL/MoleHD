@@ -76,6 +76,6 @@ python MoleHD.py \
     --test_size 20 \
     --threshold 1024 \
     --encoding_scheme smiles_pretrained \
-    --split_type random \
+    --split_type scaffold \
     --version v1
 ```
