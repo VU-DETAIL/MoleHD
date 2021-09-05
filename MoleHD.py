@@ -8,7 +8,7 @@ import sklearn.metrics
 import imblearn
 import deepchem as dc
 from deepchem.splits.splitters import ScaffoldSplitter
-from tqdm.notebook import tqdm, trange
+from tqdm import tqdm, trange
 from utils import *
 import pickle
 import os, argparse
