@@ -8,7 +8,7 @@ import sklearn.metrics
 import imblearn
 import deepchem as dc
 from deepchem.splits.splitters import ScaffoldSplitter
-from tqdm.notebook import tqdm, trange
+from tqdm import tqdm, trange
 from utils import *
 import pickle
 import os, argparse
@@ -85,7 +85,6 @@ if __name__ == '__main__':
     for iteration in tqdm(range(iterations)):
         
         random_state = random.randint(0, 1000)
-        print(f"----------- Iteration {iteration+1} ------------")
         
         # encoding the molecules into numerical tokens
         if encoding_scheme.lower() == "smiles_pretrained":
