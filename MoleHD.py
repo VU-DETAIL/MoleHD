@@ -191,4 +191,4 @@ if __name__ == '__main__':
     with open(f'./models/model_{file_suffix}', 'wb') as f:
         pickle.dump(assoc_mem, f)
         
-    print("Saving completed ...")
+    print("Saving completed.")
