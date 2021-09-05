@@ -4,7 +4,12 @@ MoleHD: Automated Drug Discovery using Brain-Inspired Hyperdimensional Computing
 **Note: If you find my work useful, please use the approproiate citations as below.**
 
 ```
-(bibtex)
+@article{ma2021molehd,
+  title={MoleHD: Automated Drug Discovery using Brain-Inspired Hyperdimensional Computing},
+  author={Ma, Dongning and Jiao, Xun},
+  journal={arXiv preprint arXiv:2106.02894},
+  year={2021}
+}
 ```
 
 If there are any technical questions after the README, please contact:
