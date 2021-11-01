@@ -86,7 +86,7 @@ def data_tokenize_smiles_pretrained(X, num_tokens=1500):
         sample_token = spe.tokenize(sample).split(' ')
         sample_token = [dict[x] if x in dict else num_tokens for x in sample_token]
         data_tokenized.append(sample_token)
-    
+        #print(sample_token)
     return data_tokenized
 
 
@@ -165,11 +165,12 @@ def data_tokenize_characterwise(X, num_tokens=1500):
         sample_token = list(sample)
         sample_token = [dict[x] if x in dict else num_tokens for x in sample_token]
         data_tokenized.append(sample_token)
+        
        
     return data_tokenized
 
 
-def create_data_HV(data_tokenized, gramsize=1, num_tokens=1500, dim=10000, max_pos=256, random_state=10):
+def create_data_HV(data_tokenized, gramsize=1, num_tokens=1500, dim=10000, max_pos=256, random_state=0):
     """Creates hypervector from the tokenized molecules
 
     This function takes the tokenized dataset and gramsize for n-gram encoding method, and creates
@@ -202,11 +203,14 @@ def create_data_HV(data_tokenized, gramsize=1, num_tokens=1500, dim=10000, max_p
         
         for token_idx in range(len(sample_) - gramsize + 1):
             if gramsize == 1:
-                sample_hv = sample_hv + np.roll(sample_[token_idx], token_idx)
+                #sample_hv = sample_hv + np.roll(sample_[token_idx], token_idx)\
+                sample_hv = sample_hv + sample_[token_idx]
             elif gramsize == 2:
                 sample_hv = sample_hv + np.multiply(sample_[token_idx], sample_[token_idx+1])
             elif gramsize == 3:
                 sample_hv = sample_hv + np.multiply(sample_[token_idx], np.multiply(sample_[token_idx+1], sample_[token_idx+2]))
+            elif gramsize == 4:
+                sample_hv = sample_hv + np.multiply(np.multiply(sample_[token_idx], np.multiply(sample_[token_idx+1], sample_[token_idx+2])), sample_[token_idx+3])
 
         sample_hv[sample_hv>max_pos] = max_pos
         sample_hv[sample_hv<-max_pos] = -max_pos
@@ -329,14 +333,11 @@ def inference(assoc_mem, X_te, Y_te, dim=10000):
     for i in range(len(Y_te)):
         dist = cdist(X_te[i].reshape(1, dim), assoc_mem, metric='cosine')
         dist = dist[0]
-        if dist[0] < dist[1]:
-            pred = 0
-        else:
+        if dist[0] > dist[1]:
             pred = 1
+        else:
+            pred = 0
         Y_pred.append(pred)
         Y_score.append((dist[0] - dist[1] + 2)/ 4)
         
     return (Y_pred, Y_score)
-    
-    
-
