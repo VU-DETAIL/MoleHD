@@ -57,15 +57,15 @@ python MoleHD.py \
     --dataset_file ./data/clintox.csv \
     --target CT_TOX \
     --mols smiles \
-    --num_tokens 1500 \
+    --num_tokens 500 \
     --dim 10000 \
     --max_pos 256 \
-    --gramsize 2 \
-    --retraining_epochs 150 \
-    --iterations 5 \
+    --gramsize 3 \
+    --retraining_epochs 20 \
+    --iterations 10 \
     --test_size 20 \
-    --threshold 1024 \
+    --threshold 256 \
     --encoding_scheme characterwise \
-    --split_type scaffold \
+    --split_type random \
     --version v1
 ```
