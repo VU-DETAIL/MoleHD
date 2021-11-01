@@ -19,18 +19,18 @@ if __name__ == '__main__':
 
     # initializing all the arguments
     parser = argparse.ArgumentParser(description='MoleHD Framework')
-    parser.add_argument('--dataset_file', default='./data/clintox.csv', type=str, help="File location. Example, './data/clintox.csv' ")
-    parser.add_argument('--target', default='CT_TOX', type=str, help="Name of target column in file.")
+    parser.add_argument('--dataset_file', default='./data/amu_sars_cov_2_in_vitro.csv', type=str, help="File location. Example, './data/clintox.csv' ")
+    parser.add_argument('--target', default='fda', type=str, help="Name of target column in file.")
     parser.add_argument('--mols', default='smiles', type=str, help="Name of column that contains molecules.")
     parser.add_argument('--num_tokens', default=1500, type=int, help="Number of tokens to be used for data tokenization. Default 1500")
     parser.add_argument('--dim', default=10000, type=int, help="Dimension of hypervector. Default 10000")
     parser.add_argument('--max_pos', default=256, type=int, help="Threshold of position hypervector. Default 256")
-    parser.add_argument('--gramsize', default=2, type=int, help="N-gram tokenization size. Default 1")
-    parser.add_argument('--retraining_epochs', default=150, type=int, help="Number of iterations to train the model for. Default 150")
-    parser.add_argument('--iterations', default=5, type=int, help="Number of iterations to run the entire experiment for. Default 1")
-    parser.add_argument('--test_size', default=20, type=int, help="Split percentage for testing set. Defualt 20.")
-    parser.add_argument('--threshold', default=1024, type=int, help="Threshold to scope the associate memory. Defualt 1024.")
-    parser.add_argument('--encoding_scheme', default="smiles_pretrained", type=str, help="Encoding scheme for HDC. Supported types [smiles_pretrained, atomwise, characterwise]")
+    parser.add_argument('--gramsize', default=1, type=int, help="N-gram tokenization size. Default 1")
+    parser.add_argument('--retraining_epochs', default=1, type=int, help="Number of iterations to train the model for. Default 150")
+    parser.add_argument('--iterations', default=5, type=int, help="Number of iterations to run the entire experiment for. Default 10")
+    parser.add_argument('--test_size', default=40, type=int, help="Split percentage for testing set. Defualt 20.")
+    parser.add_argument('--threshold', default=145254562, type=int, help="Threshold to scope the associate memory. Defualt 1024.")
+    parser.add_argument('--encoding_scheme', default="smiles_pretrained", type=str, help="Encoding scheme for HDC. Supported types [smiles_pretrained, characterwise]")
     parser.add_argument('--split_type', default="random", type=str, help="Data split method. Supported types [scaffold, random, random_stratified]")   
     parser.add_argument('--version', default="v1", type=str, help="Version to be appended to file name while saving model and output.")  
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     epochs = args.retraining_epochs
     iterations = args.iterations
     test_size = args.test_size
-    threshold = args.threshold
+    threshold = args.threshold  
     encoding_scheme = args.encoding_scheme
     split_type = args.split_type
     version = args.version
@@ -94,10 +94,10 @@ if __name__ == '__main__':
         elif encoding_scheme.lower() == "characterwise":
             data_tokenized = data_tokenize_characterwise(X, num_tokens=num_tokens)
         else:
-            print(f"MoleHD currently do not support {encoding_scheme} encoding scheme. Please try of of the 3 encoding schemes [scaffold, random, random_stratified]")
+            print(f"MoleHD currently do not support {encoding_scheme} encoding scheme. Please try of of the 3 encoding schemes [smiles_pretrained, atomwise, characterwise]")
         
         # converting numerical tokens representing molecules into a hypervectors
-        data_HV = create_data_HV(data_tokenized, gramsize=gramsize, num_tokens=num_tokens, dim=dim, max_pos=max_pos, random_state=10)
+        data_HV = create_data_HV(data_tokenized, gramsize=gramsize, num_tokens=num_tokens, dim=dim, max_pos=max_pos, random_state=random_state)
         
         # splitting the dataset into training and testing based on split type
         if split_type.lower() == "scaffold":
@@ -123,7 +123,7 @@ if __name__ == '__main__':
         # retraining the associative memory to fix misclassifications
         assoc_mem = retrain(assoc_mem, X_tr, Y_tr, epochs=epochs, dim=dim, threshold=threshold)
         
-        Y_pred, Y_score = inference(assoc_mem, X_te, Y_te, dim=10000)
+        Y_pred, Y_score = inference(assoc_mem, X_te, Y_te, dim=dim)
         
         # Metrics
         auroc = sklearn.metrics.roc_auc_score(Y_te, Y_score)
