@@ -72,4 +72,4 @@ python MoleHD.py \
 
 ## Using Smiles-PE Pre-Trained Data
 
-Should you wish to use Smiles-PE pretrained data for tokenization/encoding, you need to download the [pre-trained file] (https://github.com/XinhaoLi74/SmilesPE/blob/master/SPE_ChEMBL.txt) and put it in '''/data'''
+Should you wish to use Smiles-PE pretrained data for tokenization/encoding, you need to download the [pre-trained file] (https://github.com/XinhaoLi74/SmilesPE/blob/master/SPE_ChEMBL.txt) and put it in "./data/"
