@@ -1,27 +1,6 @@
 # MoleHD
 MoleHD: Drug Discovery using Brain-Inspired Hyperdimensional Computing
 
-```
-@article{ma2021molehd,
-  title={MoleHD: Drug Discovery using Brain-Inspired Hyperdimensional Computing},
-  author={Ma, Dongning and Jiao, Xun},
-  journal={arXiv preprint arXiv:2106.02894},
-  year={2021}
-}
-```
-
-If there are any technical questions, please contact:
-* dma2@villanova.edu
-* connectthapa84@gmail.com
-
-## Core Team
-
-* [Dependable, Efficient, and Intelligent Computing Lab (DETAIL)](https://vu-detail.github.io/) at Villanova University
-  	* Dongning Ma (Ph.D. Students, ECE)
-	* Rahul Thapa (B.S, CS)
-  	* Xun Jiao (Assistant Professor, ECE)
-
-
 ## Table of Contents
 1. [Datasets](#Datasets)
 2. [Requirements](#Requirements)
@@ -29,7 +8,7 @@ If there are any technical questions, please contact:
 
 ## Datasets
 
- Clintox, BBBP and SIDER datasets can be downloaded at [MoculeNet dataset hub](https://moleculenet.org/datasets-1).
+ **Clintox**, **BBBP** and **SIDER** datasets can be downloaded at [MoculeNet dataset hub](https://moleculenet.org/datasets-1).
 
 
 ## Requirements
@@ -71,5 +50,4 @@ python MoleHD.py \
 ```
 
 ## Using Smiles-PE Pre-Trained Data
-
-Should you wish to use Smiles-PE pretrained data for tokenization/encoding, you need to download the [pre-trained file] (https://github.com/XinhaoLi74/SmilesPE/blob/master/SPE_ChEMBL.txt) and put it in "./data/"
+Although MoleHD supports Smiles-PE, it does not necessarily require it. Should you wish to use Smiles-PE pretrained data for tokenization/encoding, you need to download the [pre-trained file] (https://github.com/XinhaoLi74/SmilesPE/blob/master/SPE_ChEMBL.txt) and put it in "./data/"
