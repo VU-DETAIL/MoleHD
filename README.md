@@ -4,7 +4,7 @@ MoleHD: Drug Discovery using Brain-Inspired Hyperdimensional Computing
 ```
 @article{ma2021molehd,
   title={MoleHD: Drug Discovery using Brain-Inspired Hyperdimensional Computing},
-  author={Ma, Dongning and Jiao, Xun},
+  author={Ma, Dongning and Thapa, Rahul and Jiao, Xun},
   journal={arXiv preprint arXiv:2106.02894},
   year={2021}
 }
