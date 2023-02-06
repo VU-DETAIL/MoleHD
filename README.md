@@ -1,12 +1,15 @@
 # MoleHD
 MoleHD: Drug Discovery using Brain-Inspired Hyperdimensional Computing
 
+If you find this repo useful in your research, please consider citing us:
 ```
-@article{ma2021molehd,
-  title={MoleHD: Drug Discovery using Brain-Inspired Hyperdimensional Computing},
+@inproceedings{ma2022molehd,
+  title={MoleHD: Efficient Drug Discovery using Brain Inspired Hyperdimensional Computing},
   author={Ma, Dongning and Thapa, Rahul and Jiao, Xun},
-  journal={arXiv preprint arXiv:2106.02894},
-  year={2021}
+  booktitle={2022 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)},
+  pages={390--393},
+  year={2022},
+  organization={IEEE}
 }
 ```
 
